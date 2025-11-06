@@ -20,6 +20,9 @@ importers:
       '@effect/platform-node':
         specifier: ^0.100.0
         version: 0.100.0(@effect/cluster@0.52.3(@effect/platform@0.93.0(effect@3.19.0))(@effect/rpc@0.72.1(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/sql@0.48.0(@effect/experimental@0.57.0(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/workflow@0.12.2(@effect/platform@0.93.0(effect@3.19.0))(@effect/rpc@0.72.1(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(effect@3.19.0))(effect@3.19.0))(@effect/platform@0.93.0(effect@3.19.0))(@effect/rpc@0.72.1(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/sql@0.48.0(@effect/experimental@0.57.0(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(effect@3.19.0)
+      dotenv:
+        specifier: ^17.2.3
+        version: 17.2.3
       effect:
         specifier: ^3.19.0
         version: 3.19.0
@@ -248,6 +251,10 @@ packages:
   detect-libc@2.1.2:
     resolution: {integrity: sha512-Btj2BOOO83o3WyH59e8MgXsxEQVcarkUOpEYrubB0urwnN10yQ364rsiByU11nZlqWYZm05i/of7io4mzihBtQ==}
     engines: {node: '>=8'}
+
+  dotenv@17.2.3:
+    resolution: {integrity: sha512-JVUnt+DUIzu87TABbhPmNfVdBDt18BLOWjMUFJMSi/Qqg7NTYtabbvSNJGOJ7afbRuv9D/lngizHtP7QyLQ+9w==}
+    engines: {node: '>=12'}
 
   effect@3.19.0:
     resolution: {integrity: sha512-eFvvryWkbXvQ4Gak1Nadv9CW6U35+UUS/fIkF4c/Th8rs2u47g+tNkViYeVGliglNnR6Ai5Otl9tLbav3yZjXg==}
@@ -533,6 +540,8 @@ snapshots:
 
   detect-libc@2.1.2:
     optional: true
+
+  dotenv@17.2.3: {}
 
   effect@3.19.0:
     dependencies:

@@ -1,3 +1,8 @@
+import dotenv from "dotenv";
+
+// Load environment variables from .env file
+dotenv.config();
+
 // import { AnthropicLanguageModel } from "@effect/ai-anthropic"
 import { OpenAiLanguageModel, OpenAiClient } from "@effect/ai-openai";
 import { LanguageModel } from "@effect/ai";
@@ -8,7 +13,7 @@ const generateDadJoke = Effect.gen(function* () {
   const response = yield* LanguageModel.generateText({
     prompt: "Generate a dad joke",
   });
-  console.log(response.text);
+  console.log(">>>", response.text);
   return response;
 });
 
@@ -19,7 +24,7 @@ const Gpt4o = OpenAiLanguageModel.model("gpt-4o");
 //      ▼
 const main = Effect.gen(function* () {
   const res1 = yield* generateDadJoke;
-  const res2 = yield* generateDadJoke;
+  //   const res2 = yield* generateDadJoke;
   //   const res3 = yield* Effect.provide(generateDadJoke, Claude37)
 }).pipe(Effect.provide(Gpt4o));
 

@@ -16,6 +16,7 @@
     "@effect/ai-anthropic": "^0.22.0",
     "@effect/ai-openai": "^0.35.0",
     "@effect/platform-node": "^0.100.0",
+    "dotenv": "^17.2.3",
     "effect": "^3.19.0"
   }
 }
