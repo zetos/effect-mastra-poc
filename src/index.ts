@@ -3,45 +3,79 @@ import dotenv from "dotenv";
 // Load environment variables from .env file
 dotenv.config();
 
-// import { AnthropicLanguageModel } from "@effect/ai-anthropic"
-import { OpenAiLanguageModel, OpenAiClient } from "@effect/ai-openai";
 import { LanguageModel } from "@effect/ai";
+import { AnthropicClient, AnthropicLanguageModel } from "@effect/ai-anthropic";
+import { OpenAiClient, OpenAiLanguageModel } from "@effect/ai-openai";
 import { NodeHttpClient } from "@effect/platform-node";
-import { Config, Effect, Layer } from "effect";
+import { Config, Data, Effect, ExecutionPlan, Layer, Schedule } from "effect";
 
-const generateDadJoke = Effect.gen(function* () {
+class NetworkError extends Data.TaggedError("NetworkError")<{
+  readonly message: string;
+}> {}
+
+class ProviderOutage extends Data.TaggedError("ProviderOutage")<{
+  readonly message: string;
+}> {}
+
+// declare const generateDadJoke: Effect.Effect<
+//   LanguageModel.GenerateTextResponse<{}>,
+//   NetworkError | ProviderOutage,
+//   LanguageModel.LanguageModel
+// >;
+
+const generateDadJoke: Effect.Effect<
+  LanguageModel.GenerateTextResponse<{}>,
+  NetworkError | ProviderOutage,
+  LanguageModel.LanguageModel
+> = Effect.gen(function* () {
   const response = yield* LanguageModel.generateText({
     prompt: "Generate a dad joke",
-  });
-  console.log(">>>", response.text);
+  }).pipe(
+    Effect.mapError((error) => {
+      if (error._tag === "HttpRequestError") {
+        return new NetworkError({ message: `Network issue: ${error.message}` });
+      }
+      if (error._tag === "HttpResponseError") {
+        return new ProviderOutage({
+          message: `Provider issue: ${error.message}`,
+        });
+      }
+      return new ProviderOutage({
+        message: `Unknown provider error: ${error.message}`,
+      });
+    })
+  );
   return response;
 });
 
-const Gpt4o = OpenAiLanguageModel.model("gpt-4o");
-// const Claude37 = AnthropicLanguageModel.model("claude-3-7-sonnet-latest")
+const DadJokePlan = ExecutionPlan.make(
+  {
+    provide: OpenAiLanguageModel.model("gpt-4o"),
+    attempts: 3,
+    schedule: Schedule.exponential("100 millis", 1.5),
+    while: (error: NetworkError | ProviderOutage) =>
+      error._tag === "NetworkError",
+  },
+  {
+    provide: AnthropicLanguageModel.model("claude-4-sonnet-20250514"),
+    attempts: 2,
+    schedule: Schedule.exponential("100 millis", 1.5),
+    while: (error: NetworkError | ProviderOutage) =>
+      error._tag === "ProviderOutage",
+  }
+);
 
-//      ┌─── Effect<void, AiError, AnthropicClient | OpenAiClient>
-//      ▼
 const main = Effect.gen(function* () {
-  const res1 = yield* generateDadJoke;
-  //   const res2 = yield* generateDadJoke;
-  //   const res3 = yield* Effect.provide(generateDadJoke, Claude37)
-}).pipe(Effect.provide(Gpt4o));
+  const response = yield* generateDadJoke;
+  console.log(">>>", response.text);
+}).pipe(Effect.withExecutionPlan(DadJokePlan));
 
-// Create a `Layer` which produces an `OpenAiClient` and requires
-// an `HttpClient`
-//
-//      ┌─── Layer<OpenAiClient, ConfigError, HttpClient>
-//      ▼
+const Anthropic = AnthropicClient.layerConfig({
+  apiKey: Config.redacted("ANTHROPIC_API_KEY"),
+}).pipe(Layer.provide(NodeHttpClient.layerUndici));
+
 const OpenAi = OpenAiClient.layerConfig({
   apiKey: Config.redacted("OPENAI_API_KEY"),
-});
+}).pipe(Layer.provide(NodeHttpClient.layerUndici));
 
-// Provide a platform-specific implementation of `HttpClient` to our
-// OpenAi layer
-//
-//        ┌─── Layer<OpenAiClient, ConfigError, never>
-//        ▼
-const OpenAiWithHttp = Layer.provide(OpenAi, NodeHttpClient.layerUndici);
-
-main.pipe(Effect.provide(OpenAiWithHttp), Effect.runPromise);
+main.pipe(Effect.provide([Anthropic, OpenAi]), Effect.runPromise);
