@@ -4,7 +4,7 @@ A TypeScript project designed to test and compare the **@effect/ai** library wit
 
 ## Project Overview
 
-This project serves as a testing ground for evaluating different AI libraries in the TypeScript ecosystem. The current implementation uses **@effect/ai** to create an agent that performs tarot readings using a detailed prompt with a Granny Weatherwax character persona.
+This project serves as a testing ground for evaluating different AI libraries in the TypeScript ecosystem. The current implementation uses **@effect/ai** to create an agent that performs tarot readings using a detailed prompt with a character persona.
 
 ### Key Features
 
@@ -24,22 +24,26 @@ This project serves as a testing ground for evaluating different AI libraries in
 ### Setup
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 cd agent
 ```
 
 2. Install dependencies:
+
 ```bash
 pnpm install
 ```
 
 3. Set up environment variables:
+
 ```bash
 cp .env.example .env
 ```
 
 4. Configure your API keys in the `.env` file:
+
 ```
 OPENAI_API_KEY=your_openai_api_key_here
 ANTHROPIC_API_KEY=your_anthropic_api_key_here
@@ -59,6 +63,7 @@ tsconfig.json         # TypeScript configuration
 ### Key Components
 
 - **`src/index.ts`**: Core implementation using Effect/AI with:
+
   - Language model abstraction
   - Error handling and retry logic
   - Fallback strategy between providers
@@ -83,7 +88,7 @@ pnpm start
 ### What It Does
 
 1. **Processes the tarot prompt** using the configured AI provider
-2. **Implements fallback strategy**: 
+2. **Implements fallback strategy**:
    - First attempts: OpenAI GPT-4o (3 retries)
    - Fallback: Anthropic Claude-4 Sonnet (2 retries)
 3. **Generates a tarot reading** based on the Celtic Cross spread
@@ -98,6 +103,7 @@ The application generates a tarot reading and saves it to `dad-joke.txt`. The re
 ### Current Implementation (Effect/AI)
 
 **Advantages:**
+
 - **Type Safety**: Full TypeScript integration with Effect's type system
 - **Composable**: Effect's composable architecture for complex workflows
 - **Error Handling**: Sophisticated error handling with typed errors
@@ -105,6 +111,7 @@ The application generates a tarot reading and saves it to `dad-joke.txt`. The re
 - **Provider Abstraction**: Clean abstraction between different AI providers
 
 **Features Demonstrated:**
+
 - Execution plans for fallback strategies
 - Typed error handling (NetworkError, ProviderOutage)
 - Effect-based async flow control
@@ -115,6 +122,7 @@ The application generates a tarot reading and saves it to `dad-joke.txt`. The re
 This project is designed to implement the same functionality using Mastra for direct comparison:
 
 **Comparison Points:**
+
 - API design and ergonomics
 - Error handling approaches
 - Provider integration complexity
