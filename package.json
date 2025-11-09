@@ -2,6 +2,7 @@
   "name": "agent",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "start": "pnpx tsx src/index.ts",
@@ -15,8 +16,10 @@
     "@effect/ai": "^0.32.0",
     "@effect/ai-anthropic": "^0.22.0",
     "@effect/ai-openai": "^0.35.0",
+    "@effect/platform": "^0.93.0",
     "@effect/platform-node": "^0.100.0",
     "dotenv": "^17.2.3",
-    "effect": "^3.19.0"
+    "effect": "^3.19.0",
+    "typescript": "^5.9.3"
   }
 }

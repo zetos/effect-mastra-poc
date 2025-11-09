@@ -17,6 +17,9 @@ importers:
       '@effect/ai-openai':
         specifier: ^0.35.0
         version: 0.35.0(@effect/ai@0.32.0(@effect/experimental@0.57.0(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/platform@0.93.0(effect@3.19.0))(@effect/rpc@0.72.1(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(effect@3.19.0))(@effect/experimental@0.57.0(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0)
+      '@effect/platform':
+        specifier: ^0.93.0
+        version: 0.93.0(effect@3.19.0)
       '@effect/platform-node':
         specifier: ^0.100.0
         version: 0.100.0(@effect/cluster@0.52.3(@effect/platform@0.93.0(effect@3.19.0))(@effect/rpc@0.72.1(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/sql@0.48.0(@effect/experimental@0.57.0(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/workflow@0.12.2(@effect/platform@0.93.0(effect@3.19.0))(@effect/rpc@0.72.1(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(effect@3.19.0))(effect@3.19.0))(@effect/platform@0.93.0(effect@3.19.0))(@effect/rpc@0.72.1(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/sql@0.48.0(@effect/experimental@0.57.0(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(@effect/platform@0.93.0(effect@3.19.0))(effect@3.19.0))(effect@3.19.0)
@@ -26,6 +29,9 @@ importers:
       effect:
         specifier: ^3.19.0
         version: 3.19.0
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
 packages:
 
@@ -325,6 +331,11 @@ packages:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
     engines: {node: '>=8.0'}
 
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
   undici-types@5.26.5:
     resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
 
@@ -609,6 +620,8 @@ snapshots:
   to-regex-range@5.0.1:
     dependencies:
       is-number: 7.0.0
+
+  typescript@5.9.3: {}
 
   undici-types@5.26.5: {}
 
