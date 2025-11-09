@@ -20,20 +20,13 @@ class ProviderOutage extends Data.TaggedError("ProviderOutage")<{
   readonly message: string;
 }> {}
 
-// declare const generateDadJoke: Effect.Effect<
-//   LanguageModel.GenerateTextResponse<{}>,
-//   NetworkError | ProviderOutage,
-//   LanguageModel.LanguageModel
-// >;
-
-const generateDadJoke: Effect.Effect<
+const generateTarotReading: Effect.Effect<
   LanguageModel.GenerateTextResponse<{}>,
   NetworkError | ProviderOutage,
   LanguageModel.LanguageModel
 > = Effect.gen(function* () {
   const response = yield* LanguageModel.generateText({
     prompt: promptString,
-    // prompt: "Generate a dad joke",
   }).pipe(
     Effect.mapError((error) => {
       if (error._tag === "HttpRequestError") {
@@ -52,9 +45,9 @@ const generateDadJoke: Effect.Effect<
   return response;
 });
 
-const DadJokePlan = ExecutionPlan.make(
+const TarotReadingPlan = ExecutionPlan.make(
   {
-    provide: OpenAiLanguageModel.model("gpt-4o"),
+    provide: OpenAiLanguageModel.model("gpt-5-nano"),
     attempts: 3,
     schedule: Schedule.exponential("100 millis", 1.5),
     while: (error: NetworkError | ProviderOutage) =>
@@ -69,17 +62,17 @@ const DadJokePlan = ExecutionPlan.make(
   }
 );
 
-const writeJokeToFile = (response: LanguageModel.GenerateTextResponse<{}>) =>
+const writeReadingToFile = (response: LanguageModel.GenerateTextResponse<{}>) =>
   Effect.gen(function* () {
     const fs = yield* FileSystem.FileSystem;
-    yield* fs.writeFileString("dad-joke.txt", response.text);
-    console.log("Dad joke written to dad-joke.txt");
+    yield* fs.writeFileString("reading.txt", response.text);
+    console.log("Tarot reading written to reading.txt");
   });
 
 const main = Effect.gen(function* () {
-  const response = yield* generateDadJoke;
-  yield* writeJokeToFile(response);
-}).pipe(Effect.withExecutionPlan(DadJokePlan));
+  const response = yield* generateTarotReading;
+  yield* writeReadingToFile(response);
+}).pipe(Effect.withExecutionPlan(TarotReadingPlan));
 
 const Anthropic = AnthropicClient.layerConfig({
   apiKey: Config.redacted("ANTHROPIC_API_KEY"),
