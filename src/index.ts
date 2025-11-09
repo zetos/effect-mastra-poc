@@ -1,4 +1,4 @@
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import promptString from "./prompt";
 
 // Load environment variables from .env file
@@ -9,6 +9,8 @@ import { AnthropicClient, AnthropicLanguageModel } from "@effect/ai-anthropic";
 import { OpenAiClient, OpenAiLanguageModel } from "@effect/ai-openai";
 import { NodeHttpClient } from "@effect/platform-node";
 import { Config, Data, Effect, ExecutionPlan, Layer, Schedule } from "effect";
+import { FileSystem } from "@effect/platform";
+import { NodeFileSystem } from "@effect/platform-node";
 
 class NetworkError extends Data.TaggedError("NetworkError")<{
   readonly message: string;
@@ -67,9 +69,16 @@ const DadJokePlan = ExecutionPlan.make(
   }
 );
 
+const writeJokeToFile = (response: LanguageModel.GenerateTextResponse<{}>) =>
+  Effect.gen(function* () {
+    const fs = yield* FileSystem.FileSystem;
+    yield* fs.writeFileString("dad-joke.txt", response.text);
+    console.log("Dad joke written to dad-joke.txt");
+  });
+
 const main = Effect.gen(function* () {
   const response = yield* generateDadJoke;
-  console.log(">>>", response.text);
+  yield* writeJokeToFile(response);
 }).pipe(Effect.withExecutionPlan(DadJokePlan));
 
 const Anthropic = AnthropicClient.layerConfig({
@@ -80,4 +89,7 @@ const OpenAi = OpenAiClient.layerConfig({
   apiKey: Config.redacted("OPENAI_API_KEY"),
 }).pipe(Layer.provide(NodeHttpClient.layerUndici));
 
-main.pipe(Effect.provide([Anthropic, OpenAi]), Effect.runPromise);
+main.pipe(
+  Effect.provide([Anthropic, OpenAi, NodeFileSystem.layer]),
+  Effect.runPromise
+);
