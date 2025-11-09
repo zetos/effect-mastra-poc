@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import promptString from "./prompt";
 
 // Load environment variables from .env file
 dotenv.config();
@@ -29,7 +30,8 @@ const generateDadJoke: Effect.Effect<
   LanguageModel.LanguageModel
 > = Effect.gen(function* () {
   const response = yield* LanguageModel.generateText({
-    prompt: "Generate a dad joke",
+    prompt: promptString,
+    // prompt: "Generate a dad joke",
   }).pipe(
     Effect.mapError((error) => {
       if (error._tag === "HttpRequestError") {
