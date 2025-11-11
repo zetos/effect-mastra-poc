@@ -173,6 +173,11 @@ const DadJokePlan = ExecutionPlan.make(
 - `pnpm start`: Run the application
 - `pnpm test`: Run tests (currently placeholder)
 
+### TODO
+
+- [ ] **TOON Integration**: Implement TOON (Token-Oriented Object Notation) format for more efficient token usage in LLM prompts. TOON provides 30-60% fewer tokens on large uniform arrays vs formatted JSON while maintaining human readability and schema-aware structure. This would be particularly useful for optimizing the tarot card data structure and prompt efficiency. [GitHub Repository](https://github.com/toon-format/toon)
+- [ ] **Mastra Implementation**: Create a parallel implementation using the Mastra library to compare with the current Effect/AI approach. This will allow direct comparison of API design, error handling approaches, provider integration complexity, performance characteristics, and developer experience between the two libraries.
+
 ### Contributing
 
 This project is primarily for library comparison and testing. When adding Mastra implementation:
