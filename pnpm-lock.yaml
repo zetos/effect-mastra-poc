@@ -23,6 +23,9 @@ importers:
       '@effect/platform-node':
         specifier: ^0.100.0
         version: 0.100.0(@effect/cluster@0.52.3(@effect/platform@0.93.2(effect@3.19.4))(@effect/rpc@0.72.1(@effect/platform@0.93.2(effect@3.19.4))(effect@3.19.4))(@effect/sql@0.48.0(@effect/experimental@0.57.0(@effect/platform@0.93.2(effect@3.19.4))(effect@3.19.4))(@effect/platform@0.93.2(effect@3.19.4))(effect@3.19.4))(@effect/workflow@0.12.2(@effect/platform@0.93.2(effect@3.19.4))(@effect/rpc@0.72.1(@effect/platform@0.93.2(effect@3.19.4))(effect@3.19.4))(effect@3.19.4))(effect@3.19.4))(@effect/platform@0.93.2(effect@3.19.4))(@effect/rpc@0.72.1(@effect/platform@0.93.2(effect@3.19.4))(effect@3.19.4))(@effect/sql@0.48.0(@effect/experimental@0.57.0(@effect/platform@0.93.2(effect@3.19.4))(effect@3.19.4))(@effect/platform@0.93.2(effect@3.19.4))(effect@3.19.4))(effect@3.19.4)
+      '@toon-format/toon':
+        specifier: ^1.0.0
+        version: 1.0.0
       dotenv:
         specifier: ^17.2.3
         version: 17.2.3
@@ -241,6 +244,9 @@ packages:
 
   '@standard-schema/spec@1.0.0':
     resolution: {integrity: sha512-m2bOd0f2RT9k8QJx1JN85cZYyH1RqFBdlwtkSlf4tBDYLCiiZnv1fIIwacK6cqwXavOydf0NPToMQgpKq+dVlA==}
+
+  '@toon-format/toon@1.0.0':
+    resolution: {integrity: sha512-2gIk8LaqrzpurNDaDWZ72kucAGcBbxJxUnp+4ZP+Pny/QVNdMVf97yzSDTI3ed2q8ypjj8T271P6iE3bRmQBNw==}
 
   '@types/node@18.19.130':
     resolution: {integrity: sha512-GRaXQx6jGfL8sKfaIDD6OupbIHBr9jv7Jnaml9tB7l4v068PAOXqfcujMMo5PhbIs6ggR1XODELqahT2R8v0fg==}
@@ -538,6 +544,8 @@ snapshots:
       '@parcel/watcher-win32-x64': 2.5.1
 
   '@standard-schema/spec@1.0.0': {}
+
+  '@toon-format/toon@1.0.0': {}
 
   '@types/node@18.19.130':
     dependencies:

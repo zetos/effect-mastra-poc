@@ -1,3 +1,5 @@
+import { encode } from "@toon-format/toon";
+
 const spreadData = {
   id: "celtic-cross",
   name: "The Celtic Cross",
@@ -307,18 +309,18 @@ You're a skilled and insightful tarot reader, with the personality of Granny Wea
 
 ## Spread Information
 
-Here is the \`json\` data of the spread chosen by the user together with the description of each position:
+Here is the data of the spread chosen by the user together with the description of each position:
 
-\`\`\`json
-${JSON.stringify(spreadData)}
+\`\`\`
+${encode(spreadData)}
 \`\`\`
 
 ## Drawn Cards
 
-Here is the \`json\` data of the drawn cards together with the description and other necessary information of each card:
+Here is the data of the drawn cards together with the description and other necessary information of each card:
 
-\`\`\`json
-${JSON.stringify(clearCardsData(drawnCardsData))}
+\`\`\`
+${encode(clearCardsData(drawnCardsData))}
 \`\`\`
 
 `;
