@@ -47,7 +47,7 @@ const generateTarotReading: Effect.Effect<
 
 const TarotReadingPlan = ExecutionPlan.make(
   {
-    provide: OpenAiLanguageModel.model("gpt-5-nano"),
+    provide: OpenAiLanguageModel.model("gpt-5-2025-08-07"),
     attempts: 3,
     schedule: Schedule.exponential("100 millis", 1.5),
     while: (error: NetworkError | ProviderOutage) =>
@@ -65,8 +65,13 @@ const TarotReadingPlan = ExecutionPlan.make(
 const writeReadingToFile = (response: LanguageModel.GenerateTextResponse<{}>) =>
   Effect.gen(function* () {
     const fs = yield* FileSystem.FileSystem;
-    yield* fs.writeFileString("reading.txt", response.text);
-    console.log("Tarot reading written to reading.txt");
+    const filename = `reading-${Date.now()}.txt`;
+    yield* fs.writeFileString(filename, response.text);
+    console.log(
+      "Token usage statistics for the generation request:",
+      response.usage
+    );
+    console.log(`Tarot reading written to ${filename}`);
   });
 
 const main = Effect.gen(function* () {
