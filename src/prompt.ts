@@ -65,94 +65,69 @@ const spreadData = {
 };
 
 const drawnCardsData = {
-  questionId: 'love',
+  questionId: 'future',
   spreadId: 'celtic-cross',
   cards: [
     {
-      id: 4,
-      name: 'The Emperor',
-      arcana: 'major',
-      imagePath: '/assets/mage/majorArcana/4 Tarot Emperor.png',
+      id: 40,
+      name: 'Five of Primordialism',
+      arcana: 'minor',
+      suit: {
+        essence: 'primordialism',
+        faction: 'nephandi',
+        element: 'water',
+        tarotSuit: 'cups',
+      },
+      imagePath: '/assets/mage/primordialism/5 of Primordialism.png',
       uprightMeaning:
-        'Authority, establishment, structure, father figure, control',
-      reversedMeaning:
-        'Domination, excessive control, lack of discipline, inflexibility',
-      keywords: ['authority', 'structure', 'control', 'stability'],
+        'Loss, grief, disappointment, regret, mourning, negative thinking',
+      reversedMeaning: 'Recovery, acceptance, moving on, healing, forgiveness',
+      keywords: ['loss', 'grief', 'regret', 'disappointment'],
       orientation: 'reversed',
       position: 1,
     },
     {
-      id: 57,
-      name: 'Eight of Dynamism',
-      arcana: 'minor',
-      suit: {
-        essence: 'dynamism',
-        faction: 'marauders',
-        element: 'air',
-        tarotSuit: 'swords',
-      },
-      imagePath: '/assets/mage/dynamism/8 of Dynamism.png',
+      id: 0,
+      name: 'The Fool',
+      arcana: 'major',
+      imagePath: '/assets/mage/majorArcana/0 Fool.png',
       uprightMeaning:
-        'Trapped, restricted, powerless, victim mindset, isolation',
-      reversedMeaning: 'Self-acceptance, freedom, release, new perspective',
-      keywords: ['trapped', 'restricted', 'powerless', 'victim'],
+        'New beginnings, innocence, spontaneity, free spirit, leap of faith',
+      reversedMeaning:
+        'Recklessness, taken advantage of, inconsideration, naivety',
+      keywords: ['beginnings', 'innocence', 'spontaneity', 'free spirit'],
       orientation: 'reversed',
       position: 2,
     },
     {
-      id: 23,
-      name: 'Two of Questing',
-      arcana: 'minor',
-      suit: {
-        essence: 'questing',
-        faction: 'traditions',
-        element: 'fire',
-        tarotSuit: 'wands',
-      },
-      imagePath: '/assets/mage/questing/2 of Questing.png',
+      id: 18,
+      name: 'The Moon',
+      arcana: 'major',
+      imagePath: '/assets/mage/majorArcana/18 Luna.png',
       uprightMeaning:
-        'Future planning, making decisions, balancing paradigms, choosing your path',
+        'Illusion, fear, anxiety, subconscious, intuition, dreams',
       reversedMeaning:
-        'Indecision, fear of change, avoidance, resistance to growth',
-      keywords: ['planning', 'choices', 'balance', 'discovery'],
-      orientation: 'upright',
+        'Release of fear, repressed emotion, inner confusion clarity',
+      keywords: ['illusion', 'intuition', 'dreams', 'subconscious'],
+      orientation: 'reversed',
       position: 3,
     },
     {
-      id: 17,
-      name: 'The Star',
+      id: 21,
+      name: 'The World',
       arcana: 'major',
-      imagePath: '/assets/mage/majorArcana/17 The Star.png',
+      imagePath: '/assets/mage/majorArcana/21 Gaia.png',
       uprightMeaning:
-        'Hope, faith, purpose, renewal, spirituality, inspiration, serenity',
+        'Completion, integration, accomplishment, travel, fulfillment, unity',
       reversedMeaning:
-        'Lack of faith, despair, self-trust, disconnection, hopelessness',
-      keywords: ['hope', 'faith', 'renewal', 'inspiration'],
-      orientation: 'upright',
+        'Seeking personal closure, short-cuts, delays, incomplete',
+      keywords: ['completion', 'accomplishment', 'travel', 'unity'],
+      orientation: 'reversed',
       position: 4,
     },
     {
-      id: 30,
-      name: 'Nine of Questing',
-      arcana: 'minor',
-      suit: {
-        essence: 'questing',
-        faction: 'traditions',
-        element: 'fire',
-        tarotSuit: 'wands',
-      },
-      imagePath: '/assets/mage/questing/9 of Questing.png',
-      uprightMeaning:
-        'Resilience, persistence, test of faith, standing strong, last stand',
-      reversedMeaning:
-        'Paranoia, refusal to compromise, stubbornness, rigidity',
-      keywords: ['resilience', 'persistence', 'boundaries', 'strength'],
-      orientation: 'reversed',
-      position: 5,
-    },
-    {
-      id: 64,
-      name: 'Ace of Pattern',
+      id: 75,
+      name: 'Knight of Pattern',
       arcana: 'minor',
       suit: {
         essence: 'pattern',
@@ -160,36 +135,68 @@ const drawnCardsData = {
         element: 'earth',
         tarotSuit: 'pentacles',
       },
-      imagePath: '/assets/mage/pattern/1 Ace of Pattern.png',
+      imagePath: '/assets/mage/pattern/12 Knight of Pattern.png',
       uprightMeaning:
-        'New financial opportunity, prosperity, manifestation, abundance, security',
+        'Efficiency, routine, conservatism, methodical, dedicated, reliable',
       reversedMeaning:
-        'Lost opportunity, lack of planning, scarcity, instability',
-      keywords: ['opportunity', 'prosperity', 'manifestation', 'security'],
+        'Laziness, obsessiveness, perfectionism, stuck in routine',
+      keywords: ['efficiency', 'routine', 'dedication', 'reliability'],
+      orientation: 'upright',
+      position: 5,
+    },
+    {
+      id: 37,
+      name: 'Two of Primordialism',
+      arcana: 'minor',
+      suit: {
+        essence: 'primordialism',
+        faction: 'nephandi',
+        element: 'water',
+        tarotSuit: 'cups',
+      },
+      imagePath: '/assets/mage/primordialism/2 of Primordialism.png',
+      uprightMeaning:
+        'Partnership, unity, attraction, connection, mutual respect, love',
+      reversedMeaning: 'Imbalance, broken communication, tension, disunion',
+      keywords: ['partnership', 'unity', 'attraction', 'connection'],
       orientation: 'upright',
       position: 6,
     },
     {
-      id: 71,
-      name: 'Eight of Pattern',
-      arcana: 'minor',
-      suit: {
-        essence: 'pattern',
-        faction: 'technocracy',
-        element: 'earth',
-        tarotSuit: 'pentacles',
-      },
-      imagePath: '/assets/mage/pattern/8 Pattern.png',
+      id: 5,
+      name: 'The Hierophant',
+      arcana: 'major',
+      imagePath: '/assets/mage/majorArcana/5 The Heirophant.png',
       uprightMeaning:
-        'Apprenticeship, skill development, hard work, dedication, craftsmanship',
-      reversedMeaning: 'Lack of focus, mediocrity, wasted effort, shortcuts',
-      keywords: ['skill', 'dedication', 'mastery', 'craftsmanship'],
-      orientation: 'upright',
+        'Spiritual wisdom, religious beliefs, conformity, tradition, institutions',
+      reversedMeaning:
+        'Personal beliefs, freedom, challenging status quo, rebellion',
+      keywords: ['tradition', 'conformity', 'spirituality', 'institutions'],
+      orientation: 'reversed',
       position: 7,
     },
     {
-      id: 60,
-      name: 'Page of Dynamism',
+      id: 39,
+      name: 'Four of Primordialism',
+      arcana: 'minor',
+      suit: {
+        essence: 'primordialism',
+        faction: 'nephandi',
+        element: 'water',
+        tarotSuit: 'cups',
+      },
+      imagePath: '/assets/mage/primordialism/4 of Primordialism.png',
+      uprightMeaning:
+        'Meditation, contemplation, apathy, reevaluation, discontent',
+      reversedMeaning:
+        'Awareness, spiritual growth, sudden realization, breakthrough',
+      keywords: ['contemplation', 'apathy', 'reevaluation', 'discontent'],
+      orientation: 'upright',
+      position: 8,
+    },
+    {
+      id: 52,
+      name: 'Three of Dynamism',
       arcana: 'minor',
       suit: {
         essence: 'dynamism',
@@ -197,45 +204,24 @@ const drawnCardsData = {
         element: 'air',
         tarotSuit: 'swords',
       },
-      imagePath: '/assets/mage/dynamism/11 Page of Dynamism.png',
-      uprightMeaning:
-        'Curiosity, restlessness, mental energy, new ideas, vigilance',
-      reversedMeaning:
-        'Deception, manipulation, all talk no action, lack of planning',
-      keywords: ['curiosity', 'mental energy', 'vigilance', 'ideas'],
-      orientation: 'upright',
-      position: 8,
-    },
-    {
-      id: 32,
-      name: 'Page of Questing',
-      arcana: 'minor',
-      suit: {
-        essence: 'questing',
-        faction: 'traditions',
-        element: 'fire',
-        tarotSuit: 'wands',
-      },
-      imagePath: '/assets/mage/questing/11 Page of Questing.png',
-      uprightMeaning:
-        'Inspiration, new ideas, enthusiasm, exploration, curious student',
-      reversedMeaning:
-        'Procrastination, lack of direction, scattered energy, delays',
-      keywords: ['inspiration', 'enthusiasm', 'curiosity', 'exploration'],
-      orientation: 'upright',
+      imagePath: '/assets/mage/dynamism/3 of Dynamism.png',
+      uprightMeaning: 'Heartbreak, grief, sorrow, pain, betrayal, suffering',
+      reversedMeaning: 'Recovery, forgiveness, moving on, releasing pain',
+      keywords: ['heartbreak', 'sorrow', 'pain', 'loss'],
+      orientation: 'reversed',
       position: 9,
     },
     {
-      id: 8,
-      name: 'Strength',
+      id: 12,
+      name: 'The Hanged Man',
       arcana: 'major',
-      imagePath: '/assets/mage/majorArcana/8 Strength.png',
+      imagePath: '/assets/mage/majorArcana/12 The Hanged Man.png',
       uprightMeaning:
-        'Inner strength, courage, patience, compassion, self-control',
+        'Pause, surrender, letting go, new perspectives, sacrifice',
       reversedMeaning:
-        'Self-doubt, weakness, insecurity, low confidence, inadequacy',
-      keywords: ['courage', 'patience', 'compassion', 'inner strength'],
-      orientation: 'upright',
+        'Delays, resistance, stalling, indecision, unable to let go',
+      keywords: ['surrender', 'perspective', 'sacrifice', 'suspension'],
+      orientation: 'reversed',
       position: 10,
     },
   ],
@@ -300,7 +286,7 @@ const taskPrompt = `
 # User Choices
 
 <userQuestion>
-    Insights into romantic relationships, partnerships, and emotional connections
+    Future & Destiny: Explore upcoming opportunities, challenges, and your life path ahead
 </userQuestion>
 
 <choosenSpread>

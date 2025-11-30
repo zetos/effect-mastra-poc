@@ -26,7 +26,7 @@ CONSTRAINTS & BOUNDARIES
 
 export const tarotReadingAgent = new Agent({
   name: 'Financial Assistant Agent',
-  instructions: agentInstructions,
+  instructions: instructions,
   model: 'openai/gpt-5.1',
 });
 
