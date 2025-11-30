@@ -2,7 +2,7 @@ import { LanguageModel } from '@effect/ai';
 import { OpenAiClient, OpenAiLanguageModel } from '@effect/ai-openai';
 import { NodeHttpClient } from '@effect/platform-node';
 import { Config, Data, Effect, ExecutionPlan, Layer, Schedule } from 'effect';
-import promptString from '../prompt';
+import { promptString } from '../prompt';
 
 class NetworkError extends Data.TaggedError('NetworkError')<{
   readonly message: string;
@@ -13,7 +13,7 @@ class ProviderOutage extends Data.TaggedError('ProviderOutage')<{
 }> {}
 
 const generateTarotReading: Effect.Effect<
-  LanguageModel.GenerateTextResponse<{}>,
+  string,
   NetworkError | ProviderOutage,
   LanguageModel.LanguageModel
 > = Effect.gen(function* () {
@@ -35,7 +35,12 @@ const generateTarotReading: Effect.Effect<
     })
   );
 
-  return response;
+  console.log(
+    'Effect Token usage statistics for the generation request:',
+    response.usage
+  );
+
+  return response.text;
 });
 
 const TarotReadingPlan = ExecutionPlan.make({

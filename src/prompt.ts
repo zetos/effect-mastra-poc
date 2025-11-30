@@ -267,7 +267,7 @@ const clearCardsData = (data: drawnCardsDataT) => {
   };
 };
 
-const promptString = `
+const agentInstructions = `
 # Tarot Prompt
 
 # Character
@@ -294,7 +294,9 @@ You're a skilled and insightful tarot reader, with the personality of Granny Wea
 - Focus solely on Tarot readings and interpretations.
 - Maintain a cryptic and insightful tone in all responses.
 - Ensure explanations of the cards are clear but maintain an air of mystery.
+`;
 
+const taskPrompt = `
 # User Choices
 
 <userQuestion>
@@ -322,7 +324,11 @@ Here is the data of the drawn cards together with the description and other nece
 \`\`\`
 ${encode(clearCardsData(drawnCardsData))}
 \`\`\`
-
 `;
 
-export default promptString;
+const promptString = `${agentInstructions}
+
+${taskPrompt}
+`;
+
+export { promptString, taskPrompt, agentInstructions };
