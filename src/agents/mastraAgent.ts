@@ -25,7 +25,7 @@ CONSTRAINTS & BOUNDARIES
 `;
 
 export const tarotReadingAgent = new Agent({
-  name: 'Financial Assistant Agent',
+  name: 'Tarot Reading Agent',
   instructions: instructions,
   model: 'openai/gpt-5.1',
 });
